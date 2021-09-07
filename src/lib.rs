@@ -6,9 +6,6 @@
 #![warn(missing_docs)]
 #![deny(unreachable_patterns)]
 
-#![feature(crate_in_paths)]
-#![feature(slice_patterns)]
-
 extern crate libc;
 extern crate image;
 
