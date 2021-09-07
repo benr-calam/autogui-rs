@@ -130,14 +130,10 @@ impl Mouse {
         self.event(action::InputAction::MouseClickN(button, 2))
     }
 
+    #[cfg(target_os="windows")]
     /// Getter for position field
     pub fn get_position(&self) -> Position {
-        self.position
-    }
-
-    /// Getter for actual position field
-    pub fn get_actual_position(&self) -> Position {
-        self.actual_position
+        current::get_mouse_position().unwrap()
     }
 }
 impl Actor for Mouse {

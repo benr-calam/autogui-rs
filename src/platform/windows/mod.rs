@@ -18,7 +18,9 @@ mod keyboard;
 mod keymap;
 // pub mod screenshot;
 
+
 use self::mouse::{mouse_move, mouse_up, mouse_down, mouse_n_click};
+pub use self::mouse::get_mouse_position;
 use self::keyboard::{keyboard_event, keyboard_event_char};
 
 fn send_input(input: winuser::INPUT) {

@@ -1,6 +1,8 @@
+use std::convert::TryInto;
 use std::mem::transmute;
 
 use winapi::ctypes::c_int;
+use winapi::shared::windef::POINT;
 use winapi::um::winuser;
 
 use super::sendinput_data;
@@ -58,5 +60,20 @@ pub(super) fn mouse_n_click(button: MouseButton, p: Position, n: u8) {
     for _ in 0..n {
         mouse_down(button, p);
         mouse_up(button, p);
+    }
+}
+
+pub fn get_mouse_position() -> Option<Position> {
+    let mut point = POINT {
+        x: 0,
+        y: 0
+    };
+
+    unsafe {
+        if winuser::GetCursorPos(&mut point) == 1 {
+            Some(Position::new(point.x.try_into().unwrap(), point.y.try_into().unwrap()))
+        } else {
+            None
+        }
     }
 }
