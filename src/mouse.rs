@@ -129,6 +129,16 @@ impl Mouse {
     pub fn doubleclick_with(self, button: MouseButton) -> Mouse {
         self.event(action::InputAction::MouseClickN(button, 2))
     }
+
+    /// Getter for position field
+    pub fn get_position(&self) -> Position {
+        self.position
+    }
+
+    /// Getter for actual position field
+    pub fn get_actual_position(&self) -> Position {
+        self.actual_position
+    }
 }
 impl Actor for Mouse {
     fn event(self, t: InputAction) -> Self {
